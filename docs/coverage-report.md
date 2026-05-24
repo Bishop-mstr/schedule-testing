@@ -10,5 +10,6 @@
 Уся папка src/components/ (UI-елементи) та src/constants/.
 Чому деякі branches не покриті?
 Низький глобальний відсоток branches (9.21%) зумовлений відсутністю тестів для UI-компонентів.
+
 <img width="1920" height="910" alt="{7DE5EC22-D76A-4B4F-A081-4019DE6FF6CB}" src="https://github.com/user-attachments/assets/628ddcf8-5fdd-4900-a659-fb5345dfb027" />
 
