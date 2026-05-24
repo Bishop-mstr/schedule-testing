@@ -5,7 +5,7 @@
 
 ## Аналіз
 Які функції/класи покриті найкраще?
-Файли з мого варіанту: src/helper/sortRoom.js, src/helper/sortGroup.js та src/helper/prepareLessonCell.js. Згідно з детальним звітом, вони мають 100% покриття.
+Файли з мого варіанту: src/helper/sortRoom.js, src/helper/sortGroup.js та src/helper/prepareLessonCell.js. Згідно з детальним звітом, вони мають 100% покриття.\n
 Які потребують додаткових тестів?
 Уся папка src/components/ (UI-елементи) та src/constants/.
 Чому деякі branches не покриті?
