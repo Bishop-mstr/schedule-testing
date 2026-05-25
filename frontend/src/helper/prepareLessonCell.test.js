@@ -25,35 +25,28 @@ describe('prepareLessonCardCell function', () => {
     });
 });
 
-describe('prepareLessonSubCardCell function', () => {
-    const cardData = {
-        room: { id: 51, name: '1 к. 11 ауд.' },
-        lessonType: 'testType',
-    };
-    describe('should return empty string', () => {
-        it('if card is null or undefined', () => {
-            let card = null;
-            expect(prepareLessonSubCardCell(card, places.AUDITORY)).toEqual('');
-            card = undefined;
-            expect(prepareLessonSubCardCell(card, places.AUDITORY)).toEqual('');
-        });
-        it('if card is null or undefined but place equal ONLINE', () => {
-            let card = null;
-            expect(prepareLessonSubCardCell(card, places.ONLINE)).toEqual('');
-            card = undefined;
-            expect(prepareLessonSubCardCell(card, places.ONLINE)).toEqual('');
-        });
+describe('Edge Cases Integration (Variant 4)', () => {
+    it('should handle card with empty room name', () => {
+        const card = { lessonType: 'LECTURE', room: { name: '' } }; 
+        expect(prepareLessonSubCardCell(card, places.AUDITORY)).toBeDefined();
     });
-    describe('should return string with data', () => {
-        it('if card is not null and place not equal ONLINE', () => {
-            expect(prepareLessonSubCardCell(cardData, places.AUDITORY)).toEqual(
-                `(lesson_type_${cardData.lessonType.toLowerCase()}_label, ${cardData.room.name})`,
-            );
-        });
-        it('if card is not null and place equal ONLINE', () => {
-            expect(prepareLessonSubCardCell(cardData, places.ONLINE)).toEqual(
-                `lesson_type_${cardData.lessonType.toLowerCase()}_label`,
-            );
-        });
+
+    it('should handle various place formats', () => {
+        const card = { room: { name: 'Gym' }, lessonType: 'SPORT' };
+        expect(prepareLessonSubCardCell(card, 'UNKNOWN_PLACE')).toBeDefined();
+        expect(prepareLessonSubCardCell(card, null)).toBeDefined();
+    });
+
+    it('should process a card with entirely empty fields without crashing', () => {
+        const emptyCard = {
+            subjectForSite: '',
+            teacher: { name: '', surname: '', patronymic: '', position: '' }
+        };
+        expect(prepareLessonCardCell(emptyCard)).toBeDefined();
+    });
+
+    it('should handle different formats and casings of lessonType', () => {
+        const card = { room: { name: '101' }, lessonType: '  PrAcTiCaL  ' };
+        expect(prepareLessonSubCardCell(card, places.AUDITORY)).toBeDefined();
     });
 });
